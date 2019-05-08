@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['middleware' => ['checkIp'], function () {
+    return 'User IP - '.$_SERVER['REMOTE_ADDR'];
+}]);
+
+Route::get('my-web', ['middleware' => ['checkIp'], function () {
+    return 'User IP - '.$_SERVER['REMOTE_ADDR'];;
+    return view('test');
+}]);
